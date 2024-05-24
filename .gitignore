@@ -24,6 +24,10 @@
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
+tmp
+/tmp
+log
+.env
 
 /public/assets
 
