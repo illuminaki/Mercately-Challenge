@@ -1,0 +1,22 @@
+# !!!CAMBIAR CUANDO SE DOCKERICE
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+
+development:
+  <<: *default
+  database: mercately_dev_env
+
+test:
+  <<: *default
+  database: mercately_t_env
+
+production:
+  <<: *default
+  database: mercately_p_env
+  username: mercately_challenge
+  password: <%= ENV["MERCATELY_CHALLENGE_DATABASE_PASSWORD"] %>

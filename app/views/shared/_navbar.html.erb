@@ -1,0 +1,30 @@
+<!-- app/views/shared/_navbar.html.erb -->
+<header class="bg-gray-800 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-xl font-bold">
+            <%= link_to 'Mercately Challenge', root_path, class: 'hover:text-gray-300' %>
+        </h1>
+        <nav>
+            <ul class="flex space-x-4">
+            <li>
+                <%= link_to 'Home', root_path, class: 'hover:text-gray-300' %>
+            </li>
+            <li>
+                <%= link_to 'Órdenes', orders_path, class: 'hover:text-gray-300' %>
+            </li>
+            <li>
+                <button id="cart-button" class="relative">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13h.6l4 8H7m0-8L5.4 7m0 0H3"></path>
+                </svg>
+                <span id="cart-count" class="absolute top-0 right-0 bg-red-600 text-white rounded-full px-2 text-xs">0</span>
+                </button>
+                <div id="notification-save-product" class="fixed transform -translate-x-1/2 bg-slate-700 text-white px-4 py-2 rounded shadow-md hidden">
+                    Producto agregado al carrito.
+                </div>
+
+            </li>
+            </ul>
+        </nav>
+    </div>
+</header>

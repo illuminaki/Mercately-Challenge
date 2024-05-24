@@ -1,0 +1,27 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-bold mb-6">Detalles de la Orden</h1>
+  <div class="bg-white rounded-lg shadow-md p-6 mb-6 max-w-2xl mx-auto">
+    <h2 class="text-xl font-semibold mb-4">Orden #<%= @order.id %></h2>
+    <div class="border-b border-gray-200 pb-4 mb-4">
+      <h3 class="text-lg font-medium mb-2">Productos</h3>
+      <ul>
+        <% @order.products.each do |product| %>
+          <li class="flex justify-between mb-2">
+            <span><%= product.name %></span>
+            <span><%= number_to_currency(product.price) %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="text-right">
+      <div class="flex justify-between text-xl font-bold pt-2">
+        <span>Total:</span>
+        <span><%= number_to_currency(@order.total) %></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-6">
+  <%= link_to 'Volver a Órdenes', orders_path, class: 'buttons-bg buttons-bg-standar text-white px-4 py-2 rounded' %>
+</div>
