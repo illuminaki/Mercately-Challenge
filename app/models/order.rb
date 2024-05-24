@@ -1,16 +1,20 @@
-# app/models/order.rb
 class Order < ApplicationRecord
-    has_many :order_items, dependent: :destroy
-    has_many :products, through: :order_items
+  has_many :order_items, dependent: :destroy
+  has_many :products, through: :order_items
 
-    validates :total, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :total, presence: true
+  validate :at_least_one_order_item
 
+  before_validation :calculate_total
 
-    after_commit :calculate_total, on: :create
+  private
 
-    def calculate_total
-      calculated_total = order_items.joins(:product).sum('products.price')
-      Rails.logger.info "Calculated total after commit: #{calculated_total}"
-      update_column(:total, calculated_total)
-    end
+  def calculate_total
+    self.total = order_items.sum { |item| item.product.price }
+    # Rails.logger.info "Calculated total before validation: #{self.total}"
+  end
+
+  def at_least_one_order_item
+    errors.add(:base, "Debe haber al menos un producto en la orden") if order_items.empty?
+  end
 end

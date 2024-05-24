@@ -7,6 +7,7 @@ default: &default
   username: <%= ENV["DATABASE_USERNAME"] %>
   host: <%= ENV["DATABASE_HOST"] %>
 
+
 development:
   <<: *default
   database: mercately_dev_env

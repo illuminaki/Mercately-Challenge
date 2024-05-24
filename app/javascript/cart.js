@@ -6,6 +6,7 @@ document.addEventListener("turbo:load", () => {
   const checkoutButton = document.getElementById("checkout");
   const cartCount = document.getElementById("cart-count");
   const closeModalButton = document.getElementById("close-modal");
+  const notification = document.getElementById("notification-save-product");
 
   // Mostrar/Ocultar el modal del carrito
   cartButton.addEventListener("click", () => {
@@ -46,6 +47,19 @@ document.addEventListener("turbo:load", () => {
       .then(data => {
         console.log(`Updated cart count: ${data.count}`);
         cartCount.textContent = data.count;
+
+        // Mostrar notificación
+        if (data.added) {
+          notification.textContent = 'Producto agregado al carrito.';
+        } else {
+          notification.textContent = 'El producto ya está en el carrito.';
+        }
+        notification.classList.remove('hidden');
+
+        // Ocultar notificación después de 3 segundos
+        setTimeout(() => {
+          notification.classList.add('hidden');
+        }, 3000);
       })
       .catch(error => console.error('Error:', error));
     });
